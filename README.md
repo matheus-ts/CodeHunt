@@ -10,10 +10,18 @@
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: Angular v16
-- **Backend**: APIs do GitHub
-- **Estilização**: Bootstrap
+- **Frontend**: **[Angular [v16]](https://v16.angular.io/docs)** 
+- **Backend**: **[Github [API]](https://docs.github.com/en/rest)** 
+- **Estilização**: **[Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)**
 
+## Pré-requisitos
+Antes de iniciar, certifique-se de que você tem as seguintes ferramentas instaladas:
+
+- **[Node.js](https://nodejs.org/)** (versão 16 ou superior) – necessário para rodar pacotes e scripts npm.
+- **[Angular [CLI]](https://angular.io/cli)** (versão mais recente) – para executar e construir a aplicação Angular.
+- **[Git](https://git-scm.com/)** – para clonar o repositório e gerenciar controle de versão.
+
+Se o seu projeto interagir diretamente com a API do GitHub, também seria útil incluir a necessidade de um **token de API** ou um **acesso à chave de autenticação** do GitHub para chamadas autenticadas.
 ## Como Executar o Projeto
 
 1. Clone o repositório:
@@ -40,7 +48,8 @@
 
 ## Contribuições
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorias.
+Contribuições são bem-vindas! \
+Sinta-se à vontade para abrir issues ou enviar pull requests para melhorias.
 
 ## Licença
 
