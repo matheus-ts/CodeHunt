@@ -10,11 +10,12 @@
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: **[Angular [v16]](https://v16.angular.io/docs)** 
-- **Backend**: **[Github [API]](https://docs.github.com/en/rest)** 
+- **Frontend**: **[Angular [v16]](https://v16.angular.io/docs)**
+- **Backend**: **[Github [API]](https://docs.github.com/en/rest)**
 - **Estilização**: **[Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)**
 
 ## Pré-requisitos
+
 Antes de iniciar, certifique-se de que você tem as seguintes ferramentas instaladas:
 
 - **[Node.js](https://nodejs.org/)** (versão 16 ou superior) – necessário para rodar pacotes e scripts npm.
@@ -22,24 +23,29 @@ Antes de iniciar, certifique-se de que você tem as seguintes ferramentas instal
 - **[Git](https://git-scm.com/)** – para clonar o repositório e gerenciar controle de versão.
 
 Se o seu projeto interagir diretamente com a API do GitHub, também seria útil incluir a necessidade de um **token de API** ou um **acesso à chave de autenticação** do GitHub para chamadas autenticadas.
+
 ## Como Executar o Projeto
 
 1. Clone o repositório:
+
    ```bash
    git clone https://github.com/matheus-ts/CodeHunt.git
    ```
 
 2. Navegue até o diretório do projeto:
+
    ```bash
    cd code-hunt
    ```
 
 3. Instale as dependências:
+
    ```bash
    npm install
    ```
 
 4. Inicie o servidor de desenvolvimento:
+
    ```bash
    ng serve
    ```
