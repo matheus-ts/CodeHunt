@@ -2,6 +2,9 @@
 
 **Code Hunt** é uma aplicação web desenvolvida com **Angular v16** que permite aos usuários pesquisar repositórios do GitHub e analisar seus Pull Requests.
 
+## Prototípo 
+**[Figma](https://www.figma.com/proto/9KG0hcehJlbDegAw9RXmqL/Code-Hunt?node-id=1-3&node-type=canvas&t=MksenEY24GcKIWUd-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3)**
+
 ## Funcionalidades
 
 - **Pesquisa de Repositórios**: Encontre repositórios públicos no GitHub com base em palavras-chave.
