@@ -1,10 +1,33 @@
-<div class="vh-100 d-flex justify-content-center align-items-center">
-  <div class="search-container d-flex align-items-center flex-column gap-5">
-    <div class="logo-container">
-      <app-logo></app-logo>
+<div
+  class="vh-100 d-flex flex-column justify-content-evenly align-items-center">
+  <div class="row">
+    <div class="search-container d-flex align-items-center flex-column gap-5">
+      <div class="logo-container">
+        <app-logo></app-logo>
+      </div>
+      <app-input
+        [placeholder]="'Digite a linguagem de programação'"
+        (search)="onSearch($event)"></app-input>
     </div>
-    <app-input
-      [placeholder]="'Digite a linguagem de programação'"
-      (search)="onSearch($event)"></app-input>
+  </div>
+  <div class="row">
+    <div
+      class="search-content d-flex align-items-center flex-column gap-2 col-12"
+      *ngIf="tableData.length !== 0">
+      <app-card></app-card>
+      <app-card></app-card>
+      <app-card></app-card>
+      <app-card></app-card>
+      <app-card></app-card>
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination py-4">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
