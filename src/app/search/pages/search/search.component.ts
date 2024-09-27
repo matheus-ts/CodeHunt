@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
+import { QueryParams } from 'src/app/interfaces/query.model';
 
 @Component({
   selector: 'app-search',
@@ -8,23 +9,25 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+  tableData: any[] = [{ teste: 'oi' }];
   constructor(private searchService: SearchService) {}
 
   onSearch(params: string) {
-    const query = {
+    const query: QueryParams = {
       q: `language:${params}`,
       per_page: 10,
       page: 1,
       direction: 'desc',
       sort: 'updated',
     };
-    this.searchRepos(query);
+    console.info(query);
+    // this.searchRepos(query);
   }
 
-  searchRepos(params: any) {
+  searchRepos(params: QueryParams) {
     this.searchService
       .searchRepos(params)
-      .pipe(distinctUntilChanged(params.q))
+      .pipe(distinctUntilChanged())
       .subscribe({
         next: data => console.log(data),
         error: error => console.error(error),
