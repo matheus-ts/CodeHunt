@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
@@ -6,7 +12,7 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css'],
 })
-export class InputComponent {
+export class InputComponent implements OnDestroy {
   @Input() placeholder: string;
   @Output() search = new EventEmitter<string>();
   private searchSubject = new Subject<string>();
@@ -15,7 +21,6 @@ export class InputComponent {
     this.searchSubject
       .pipe(debounceTime(2000), distinctUntilChanged())
       .subscribe((searchTerm: string) => {
-        console.log(searchTerm);
         this.search.emit(searchTerm);
       });
   }
@@ -26,5 +31,9 @@ export class InputComponent {
     if (inputValue.length >= 3) {
       this.searchSubject.next(inputValue);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.searchSubject.unsubscribe();
   }
 }

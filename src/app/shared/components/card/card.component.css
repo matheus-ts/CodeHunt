@@ -12,12 +12,9 @@
 .repository-subtitle {
   margin-bottom: 0;
   font-size: 1rem;
+  color: #ff9254;
+  text-decoration: underline;
 }
 .repository-description {
   font-size: 16px;
-}
-.tag {
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 3px 20px;
 }

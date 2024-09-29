@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { distinctUntilChanged } from 'rxjs';
 import { QueryParams } from 'src/app/interfaces/query.model';
+import { SearchResponse } from 'src/app/interfaces/response/search.model';
 
 @Component({
   selector: 'app-search',
@@ -9,19 +10,20 @@ import { QueryParams } from 'src/app/interfaces/query.model';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  tableData: any[] = [{ teste: 'oi' }];
+  private searchTerm: string;
+
+  tableData: SearchResponse[] = [];
+  itemsPerPage = 3;
+
   constructor(private searchService: SearchService) {}
 
-  onSearch(params: string) {
-    const query: QueryParams = {
-      q: `language:${params}`,
-      per_page: 10,
-      page: 1,
-      direction: 'desc',
-      sort: 'updated',
-    };
-    console.info(query);
-    // this.searchRepos(query);
+  onSearch(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    this.searchRepos(this.buildQueryParams(this.searchTerm, 1));
+  }
+
+  onChangePage(page: number) {
+    this.searchRepos(this.buildQueryParams(this.searchTerm, page));
   }
 
   searchRepos(params: QueryParams) {
@@ -29,9 +31,19 @@ export class SearchComponent {
       .searchRepos(params)
       .pipe(distinctUntilChanged())
       .subscribe({
-        next: data => console.log(data),
-        error: error => console.error(error),
-        complete: () => console.info('Complete'),
+        next: data => (this.tableData = data),
+        error: error => console.error('Erro ao buscar repositórios:', error),
+        complete: () => console.info('Busca de repositórios completa'),
       });
+  }
+
+  private buildQueryParams(language: string, page: number): QueryParams {
+    return {
+      q: `language:${language}`,
+      per_page: this.itemsPerPage,
+      page: page,
+      direction: 'desc',
+      sort: 'updated',
+    };
   }
 }
