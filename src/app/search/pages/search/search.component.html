@@ -12,6 +12,7 @@
   </div>
   <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
     <app-card
+      (click)="viewDetails()"
       *ngFor="
         let card of tableData
           | paginate

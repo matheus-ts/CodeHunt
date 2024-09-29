@@ -3,6 +3,7 @@ import { SearchService } from '../../services/search.service';
 import { distinctUntilChanged } from 'rxjs';
 import { QueryParams } from 'src/app/interfaces/query.model';
 import { SearchResponse } from 'src/app/interfaces/response/search.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,10 @@ export class SearchComponent {
     totalItems: 0,
   };
 
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService,
+    private router: Router
+  ) {}
 
   onSearch(searchTerm: string) {
     this.searchTerm = searchTerm;
@@ -28,6 +32,10 @@ export class SearchComponent {
 
   onChangePage(page: number) {
     this.searchRepos(this.buildQueryParams(this.searchTerm, page));
+  }
+
+  viewDetails() {
+    this.router.navigate(['details']);
   }
 
   searchRepos(params: QueryParams) {
