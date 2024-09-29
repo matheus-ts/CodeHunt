@@ -16,3 +16,8 @@
   background: var(--primary-color) !important;
   border-radius: 3px;
 }
+@media (max-width: 407px) {
+  .custom-input {
+    font-size: 0.8rem !important;
+  }
+}

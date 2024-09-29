@@ -1,13 +1,26 @@
 <div
   class="vh-100 d-flex flex-column justify-content-evenly align-items-center">
-  <div class="row">
-    <div class="search-container d-flex align-items-center flex-column gap-5">
-      <div class="logo-container">
+  <div class="row w-100 justify-content-center align-items-center">
+    <div class="search-container col-12 col-md-8 text-center gap-5">
+      <div class="row mb-4">
         <app-logo />
       </div>
-      <app-input
-        [placeholder]="'Digite a linguagem de programação'"
-        (search)="onSearch($event)" />
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group position-relative">
+            <app-input
+              class="custom-input w-100"
+              [placeholder]="'Digite a linguagem de programação'"
+              (search)="onSearch($event)" />
+            <span class="input-icon">
+              <img
+                class="input-icon"
+                src="../../../../assets/icons/search.svg"
+                alt="Search Icon" />
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="search-content row gap-2" *ngIf="tableData.length !== 0">

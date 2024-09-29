@@ -7,7 +7,7 @@
         width="200px"
         alt="Avatar do dono do repositorio git" />
     </div> -->
-    <div class="card-info col-9">
+    <div class="card-info col-sm-12 col-md-9">
       <div class="repository-name d-flex align-items-center gap-2">
         <h2 class="repository-title">{{ cardData.repository.name }}</h2>
       </div>
@@ -17,7 +17,7 @@
           data-bs-placement="top"
           title="Visualizar Repositório (Github)"
           class="repository-subtitle"
-          _blank
+          target="_blank"
           [href]="cardData.repository.html_url"
           >{{ cardData.repository.fullName }}</a
         >
@@ -25,7 +25,7 @@
         <p>{{ cardData.repository.description }}</p>
       </div>
     </div>
-    <div class="card-status align-self-center col-3">
+    <div class="card-status col-sm-12 col-md-3">
       <div class="row gap-4">
         <div class="tags d-flex gap-3 justify-content-end">
           <app-tag
@@ -35,7 +35,7 @@
             customTag="tag-privacy"
             [labelTag]="cardData.repository.visibility" />
         </div>
-        <div class="repository-info d-flex justify-content-end gap-2">
+        <div class="repository-info mt-3 d-flex justify-content-end gap-2">
           <div class="stars">
             <img src="../../../../assets/icons/star.svg" alt="Star Icon" />
             {{ cardData.repository.stars }}
