@@ -4,6 +4,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { QueryParams } from 'src/app/interfaces/query.model';
 import { SearchResponse } from 'src/app/interfaces/response/search.model';
 import { Router } from '@angular/router';
+import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
 
 @Component({
   selector: 'app-search',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent {
   private searchTerm: string;
+  size: LogoSize = LogoSize.medium;
 
   tableData: SearchResponse[] = [];
   paginationControls = {
