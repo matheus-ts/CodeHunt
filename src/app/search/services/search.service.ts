@@ -17,7 +17,9 @@ export class SearchService {
       .pipe(
         tap(console.log),
         map((response: GithubResponse) => {
+          console.log(response);
           return response?.items.map(repo => ({
+            totalItems: response.total_count,
             user: {
               userId: repo?.owner?.id,
               userAvatar: repo?.owner?.avatar_url,

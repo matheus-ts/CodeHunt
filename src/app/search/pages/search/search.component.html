@@ -3,18 +3,31 @@
   <div class="row">
     <div class="search-container d-flex align-items-center flex-column gap-5">
       <div class="logo-container">
-        <app-logo></app-logo>
+        <app-logo />
       </div>
       <app-input
         [placeholder]="'Digite a linguagem de programação'"
-        (search)="onSearch($event)"></app-input>
+        (search)="onSearch($event)" />
     </div>
   </div>
   <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
-    <app-card *ngFor="let card of tableData" [cardData]="card" />
-    <app-pagination
-      (pageChanged)="onChangePage($event)"
-      [totalItems]="10"
-      [itemsPerPage]="2"></app-pagination>
+    <app-card
+      *ngFor="
+        let card of tableData
+          | paginate
+            : {
+                itemsPerPage: paginationControls.itemsPerPage,
+                currentPage: paginationControls.currentPage,
+                totalItems: paginationControls.totalItems,
+              }
+      "
+      [cardData]="card" />
+    <div class="row">
+      <div class="d-flex justify-content-center align-items-center">
+        <pagination-controls
+          [responsive]="true"
+          (pageChange)="onChangePage($event)" />
+      </div>
+    </div>
   </div>
 </div>

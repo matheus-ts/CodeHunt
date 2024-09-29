@@ -12,7 +12,7 @@
 .repository-subtitle {
   margin-bottom: 0;
   font-size: 1rem;
-  color: #ff9254;
+  color: var(--primary-color);
   text-decoration: underline;
 }
 .repository-description {

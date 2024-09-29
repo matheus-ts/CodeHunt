@@ -13,7 +13,11 @@ export class SearchComponent {
   private searchTerm: string;
 
   tableData: SearchResponse[] = [];
-  itemsPerPage = 3;
+  paginationControls = {
+    itemsPerPage: 3,
+    currentPage: 1,
+    totalItems: 0,
+  };
 
   constructor(private searchService: SearchService) {}
 
@@ -31,16 +35,20 @@ export class SearchComponent {
       .searchRepos(params)
       .pipe(distinctUntilChanged())
       .subscribe({
-        next: data => (this.tableData = data),
+        next: data => {
+          this.tableData = data;
+          this.paginationControls.totalItems = data[0].totalItems;
+        },
         error: error => console.error('Erro ao buscar repositórios:', error),
         complete: () => console.info('Busca de repositórios completa'),
       });
   }
 
   private buildQueryParams(language: string, page: number): QueryParams {
+    this.paginationControls.currentPage = page;
     return {
       q: `language:${language}`,
-      per_page: this.itemsPerPage,
+      per_page: this.paginationControls.itemsPerPage,
       page: page,
       direction: 'desc',
       sort: 'updated',
