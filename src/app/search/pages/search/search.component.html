@@ -41,6 +41,9 @@
                 }
         "
         [cardData]="card"
+        (keydown.enter)="viewDetails(card)"
+        tabindex="0"
+        role="button"
         (click)="viewDetails(card)" />
       <div class="row">
         <div class="d-flex justify-content-center align-items-center">
