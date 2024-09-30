@@ -7,7 +7,6 @@ import {
 import { SharedService } from 'src/app/shared/service/shared.service';
 import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
 import { SearchService } from '../../services/search.service';
-import { QueryParams } from 'src/app/interfaces/query.model';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -43,14 +42,13 @@ export class SearchDetailsComponent implements OnInit {
         this.searchRepos(this.buildQueryParams());
       },
       error: error => console.error('Erro ao buscar repositório:', error),
-      // complete: () => this.searchRepos(this.buildQueryParams(1)),
     });
   }
 
   searchRepos(query: any) {
     const pathParameters = {
-      owner: this.cardData.user.userName,
-      repo: this.cardData.repository.name,
+      owner: this.cardData?.user?.userName,
+      repo: this.cardData?.repository?.name,
     };
 
     this.searchService

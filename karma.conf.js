@@ -1,11 +1,11 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/1.0/config/configuration-file.html
-
 module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
-    files: ['src/**/*.js', 'test/**/*.spec.js'],
+    files: [
+      { pattern: 'src/**/*.js', watched: false },
+      { pattern: 'src/**/*.spec.ts', watched: false },
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -15,10 +15,10 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {},
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      clearContext: false,
     },
     jasmineHtmlReporter: {
-      suppressAll: true, // removes the duplicated traces
+      suppressAll: true,
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage/angular-coverage'),
@@ -26,7 +26,7 @@ module.exports = function (config) {
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
     reporters: ['progress', 'kjhtml'],
-    port: 5000,
+    port: 9876, // Use o padrão
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
