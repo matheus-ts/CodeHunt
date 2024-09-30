@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-import { distinctUntilChanged } from 'rxjs';
+import { catchError, distinctUntilChanged, finalize, of } from 'rxjs';
 import { QueryParams } from 'src/app/interfaces/query.model';
 import { SearchResponse } from 'src/app/interfaces/response/search.model';
 import { Router } from '@angular/router';
 import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
 import { SharedService } from 'src/app/shared/service/shared.service';
+import { ErrorMessages } from 'src/app/utils/enum/errors-message.enum';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +16,9 @@ import { SharedService } from 'src/app/shared/service/shared.service';
 export class SearchComponent {
   private searchTerm: string;
   size: LogoSize = LogoSize.medium;
+  hasError = false;
+
+  errorMessage: string;
 
   tableData: SearchResponse[] = [];
   paginationControls = {
@@ -46,13 +50,28 @@ export class SearchComponent {
   searchRepos(params: QueryParams) {
     this.searchService
       .searchRepos(params)
-      .pipe(distinctUntilChanged())
+      .pipe(
+        distinctUntilChanged(),
+        catchError(error => {
+          this.errorMessage =
+            error.status === 422
+              ? ErrorMessages.NoRecords
+              : ErrorMessages.RequestError;
+          this.hasError = true;
+          return of([]);
+        }),
+        finalize(() => {
+          setTimeout(() => (this.hasError = false), 2000);
+        })
+      )
       .subscribe({
         next: data => {
           this.tableData = data;
           this.paginationControls.totalItems = data[0].totalItems;
         },
-        error: error => console.error('Erro ao buscar repositórios:', error),
+        error: error => {
+          console.error('Erro ao buscar repositórios:', error);
+        },
         complete: () => console.info('Busca de repositórios completa'),
       });
   }

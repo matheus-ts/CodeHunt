@@ -24,7 +24,12 @@
         </div>
       </div>
     </div>
-    <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
+
+    <app-notification
+      *ngIf="hasError"
+      [errorMessage]="errorMessage"
+      [typeAlert]="'alert-danger'" />
+    <div class="search-content row gap-2" *ngIf="tableData.length > 0">
       <app-card
         *ngFor="
           let card of tableData
