@@ -7,6 +7,7 @@ import { CardComponent } from './components/card/card.component';
 import { TagComponent } from './components/tag/tag.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CardPullComponent } from './components/card-pull/card-pull.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const MODULES = [
   CommonModule,
@@ -20,6 +21,7 @@ const COMPONENTS = [
   CardComponent,
   TagComponent,
   CardPullComponent,
+  NotificationComponent,
 ];
 
 @NgModule({
