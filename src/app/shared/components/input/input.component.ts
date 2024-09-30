@@ -28,7 +28,7 @@ export class InputComponent implements OnDestroy {
   onInputChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement?.value;
-    if (inputValue.length >= 3) {
+    if (inputValue.length != 0) {
       this.searchSubject.next(inputValue);
     }
   }
