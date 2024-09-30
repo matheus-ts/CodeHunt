@@ -5,3 +5,8 @@
   border-radius: 5px;
   box-shadow: 2px 2px 10px var(--box-shadow-primary);
 }
+.btn-voltar {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}

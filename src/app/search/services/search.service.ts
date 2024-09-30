@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
+import { GithubPulls } from 'src/app/interfaces/response/api-github-pull.model';
 import { GithubResponse } from 'src/app/interfaces/response/api-github.model';
-import { SearchResponse } from 'src/app/interfaces/response/search.model';
+import {
+  SearchDetails,
+  SearchResponse,
+} from 'src/app/interfaces/response/search.model';
 import { ENDPOINTS } from 'src/environments/endpoint';
 
 @Injectable({
@@ -48,9 +52,25 @@ export class SearchService {
 
   searchPulls(query: any, params: any) {
     return this.http
-      .get(`${ENDPOINTS.searchPulls}/${query.owner}/${query.repo}/pulls`, {
-        params,
-      })
-      .pipe(tap(console.log));
+      .get<SearchDetails[]>(
+        `${ENDPOINTS.searchPulls}/${query.owner}/${query.repo}/pulls`,
+        {
+          params,
+        }
+      )
+      .pipe(
+        tap(console.log),
+        map((response: GithubPulls[]) => {
+          return response.map(details => ({
+            id: details.id,
+            state: details.state,
+            title: details.title,
+            openedBy: details.user?.login,
+            pullUrl: details.url,
+            totalItems: response.length,
+          }));
+        }),
+        tap(pulls => console.log('Mapped Pulls:', pulls))
+      );
   }
 }

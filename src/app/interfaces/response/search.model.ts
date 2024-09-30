@@ -26,3 +26,12 @@ export class SearchResponse {
   repository: Repository;
   //   paginable: string;
 }
+
+export class SearchDetails {
+  totalItems: number;
+  id: number;
+  state: string;
+  title: string;
+  openedBy: string;
+  pullUrl: string;
+}

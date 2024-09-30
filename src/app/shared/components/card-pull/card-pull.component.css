@@ -1,0 +1,16 @@
+.custom-card {
+  border: 3px solid var(--primary-color);
+  border-radius: 5px;
+}
+.repository-description > p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.repository-description > span {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+.repository-title {
+  font-size: 1.8rem;
+}

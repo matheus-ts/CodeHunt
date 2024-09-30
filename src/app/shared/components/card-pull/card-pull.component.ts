@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SearchDetails } from 'src/app/interfaces/response/search.model';
 
 @Component({
   selector: 'app-card-pull',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-pull.component.css'],
 })
 export class CardPullComponent {
-  @Input() cardData: any;
+  @Input() cardData: SearchDetails;
 }

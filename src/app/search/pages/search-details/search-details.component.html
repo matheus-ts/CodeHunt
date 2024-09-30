@@ -7,9 +7,12 @@
           (keydown.enter)="goToSearchPage()"
           tabindex="0"
           role="button"
-          class="btn-voltar"
-          class="btn-voltar"
-          >Voltar</span
+          class="btn-voltar d-flex align-items-center"
+          ><img
+            width="30px"
+            src="../../../../assets/icons/arrow-left.svg"
+            alt="Seta apontada para esquerda (voltar)" />
+          Voltar</span
         >
         <app-logo [size]="logoSize"></app-logo>
       </div>
@@ -21,24 +24,29 @@
       <app-card [cardData]="cardData"></app-card>
     </div>
   </div>
-  <div class="container search-content">
-    <app-card-pull
-      *ngFor="
-        let card of tableData
-          | paginate
-            : {
-                itemsPerPage: paginationControls.itemsPerPage,
-                currentPage: paginationControls.currentPage,
-                totalItems: paginationControls.totalItems,
-              }
-      "
-      [cardData]="card" />
-    <div class="row">
-      <div class="d-flex justify-content-center align-items-center">
-        <pagination-controls
-          [responsive]="true"
-          (pageChange)="onChangePage($event)" />
+  <div class="container search-content gap-2 mt-5">
+    <div *ngIf="tableData.length !== 0; else notFound">
+      <app-card-pull
+        *ngFor="
+          let card of tableData
+            | paginate
+              : {
+                  itemsPerPage: paginationControls.itemsPerPage,
+                  currentPage: paginationControls.currentPage,
+                  totalItems: paginationControls.totalItems,
+                }
+        "
+        [cardData]="card" />
+      <div class="row">
+        <div class="d-flex justify-content-center align-items-center mt-3">
+          <pagination-controls
+            [responsive]="true"
+            (pageChange)="onChangePage($event)" />
+        </div>
       </div>
     </div>
+    <ng-template #notFound>
+      <h4>Nenhum pull request retornado para o repositório selecionado</h4>
+    </ng-template>
   </div>
 </div>

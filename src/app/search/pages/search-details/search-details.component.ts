@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchResponse } from 'src/app/interfaces/response/search.model';
+import {
+  SearchDetails,
+  SearchResponse,
+} from 'src/app/interfaces/response/search.model';
 import { SharedService } from 'src/app/shared/service/shared.service';
 import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
 import { SearchService } from '../../services/search.service';
@@ -16,7 +19,7 @@ export class SearchDetailsComponent implements OnInit {
   logoSize: LogoSize = LogoSize.small;
   cardData: SearchResponse;
 
-  tableData: any[];
+  tableData: SearchDetails[];
   paginationControls = {
     itemsPerPage: 3,
     currentPage: 1,
@@ -33,10 +36,10 @@ export class SearchDetailsComponent implements OnInit {
     this.sharedService.currentRepository.subscribe({
       next: data => {
         this.cardData = data;
-        // this.searchRepos(this.buildQueryParams(1));
+        this.searchRepos(this.buildQueryParams(1));
       },
       error: error => console.error('Erro ao buscar repositório:', error),
-      complete: () => this.searchRepos(this.buildQueryParams(1)),
+      // complete: () => this.searchRepos(this.buildQueryParams(1)),
     });
   }
 
@@ -52,7 +55,6 @@ export class SearchDetailsComponent implements OnInit {
       .subscribe({
         next: data => {
           this.tableData = data;
-          this.paginationControls.totalItems = data[0].totalItems;
         },
         error: error =>
           console.error('Erro ao buscar pulls do repositório:', error),
