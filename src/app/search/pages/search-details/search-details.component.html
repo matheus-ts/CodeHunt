@@ -21,4 +21,24 @@
       <app-card [cardData]="cardData"></app-card>
     </div>
   </div>
+  <div class="container search-content">
+    <app-card-pull
+      *ngFor="
+        let card of tableData
+          | paginate
+            : {
+                itemsPerPage: paginationControls.itemsPerPage,
+                currentPage: paginationControls.currentPage,
+                totalItems: paginationControls.totalItems,
+              }
+      "
+      [cardData]="card" />
+    <div class="row">
+      <div class="d-flex justify-content-center align-items-center">
+        <pagination-controls
+          [responsive]="true"
+          (pageChange)="onChangePage($event)" />
+      </div>
+    </div>
+  </div>
 </div>

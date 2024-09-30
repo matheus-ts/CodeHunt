@@ -33,19 +33,14 @@ export class SearchDetailsComponent implements OnInit {
     this.sharedService.currentRepository.subscribe({
       next: data => {
         this.cardData = data;
-        this.searchRepos();
+        // this.searchRepos(this.buildQueryParams(1));
       },
       error: error => console.error('Erro ao buscar repositório:', error),
-      complete: () => this.searchRepos(),
+      complete: () => this.searchRepos(this.buildQueryParams(1)),
     });
   }
 
-  searchRepos() {
-    const query = {
-      page: 1,
-      per_page: 4,
-      sort: 'created',
-    };
+  searchRepos(query: any) {
     const pathParameters = {
       owner: this.cardData.user.userName,
       repo: this.cardData.repository.name,
@@ -63,6 +58,20 @@ export class SearchDetailsComponent implements OnInit {
           console.error('Erro ao buscar pulls do repositório:', error),
         complete: () => console.info('Busca de pulls repositório completa'),
       });
+  }
+
+  onChangePage(page: number) {
+    this.searchRepos(this.buildQueryParams(page));
+  }
+
+  private buildQueryParams(page: any) {
+    this.paginationControls.currentPage = page;
+    return {
+      per_page: this.paginationControls.itemsPerPage,
+      page: page,
+      direction: 'desc',
+      sort: 'updated',
+    };
   }
 
   goToSearchPage() {
