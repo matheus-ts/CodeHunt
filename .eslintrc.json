@@ -26,6 +26,10 @@
             "prefix": "app",
             "style": "kebab-case"
           }
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          { "allow": ["constructors"] }
         ]
       }
     },

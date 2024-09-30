@@ -7,7 +7,7 @@
 
 ## Funcionalidades
 
-- **Pesquisa de Repositórios**: Encontre repositórios públicos no GitHub com base em palavras-chave.
+- **Pesquisa de Repositórios**: Encontre repositórios públicos no GitHub com base na linguagem que escolher.
 - **Análise de Pull Requests**: Visualize detalhes de Pull Requests.
 - **Interface Intuitiva**: Navegação simples e responsiva, otimizada para dispositivos móveis e desktop.
 

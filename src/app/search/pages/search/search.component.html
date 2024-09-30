@@ -1,0 +1,49 @@
+<div class="container">
+  <div
+    class="vh-100 d-flex flex-column justify-content-evenly align-items-center">
+    <div class="row d-flex w-100 justify-content-center align-items-center">
+      <div class="search-container col-12 col-md-8 text-center gap-5">
+        <div class="row mb-4">
+          <app-logo [size]="size" />
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-sm-12 col-md-10">
+            <div class="form-group position-relative">
+              <app-input
+                class="custom-input w-100"
+                [placeholder]="'Digite a linguagem de programação'"
+                (search)="onSearch($event)" />
+              <span class="input-icon">
+                <img
+                  class="input-icon"
+                  src="../../../../assets/icons/search.svg"
+                  alt="Search Icon" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
+      <app-card
+        *ngFor="
+          let card of tableData
+            | paginate
+              : {
+                  itemsPerPage: paginationControls.itemsPerPage,
+                  currentPage: paginationControls.currentPage,
+                  totalItems: paginationControls.totalItems,
+                }
+        "
+        [cardData]="card"
+        (click)="viewDetails(card)" />
+      <div class="row">
+        <div class="d-flex justify-content-center align-items-center">
+          <pagination-controls
+            [responsive]="true"
+            (pageChange)="onChangePage($event)" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

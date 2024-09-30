@@ -1,0 +1,61 @@
+<div class="custom-card col-12 p-2">
+  <div class="row">
+    <!-- <div
+      class="card-icon col-1 d-flex justify-content-center align-items-center">
+      <img
+        [src]="cardData.user.userAvatar"
+        width="200px"
+        alt="Avatar do dono do repositorio git" />
+    </div> -->
+    <div class="card-info col-sm-12 col-md-9">
+      <div class="repository-name d-flex align-items-center gap-2">
+        <h2 class="repository-title">{{ cardData.repository.name }}</h2>
+      </div>
+      <div class="repository-description">
+        <a
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Visualizar Repositório (Github)"
+          class="repository-subtitle"
+          target="_blank"
+          [href]="cardData.repository.html_url"
+          >{{ cardData.repository.fullName }}</a
+        >
+
+        <p>{{ cardData.repository.description }}</p>
+      </div>
+    </div>
+    <div class="card-status col-sm-12 col-md-3">
+      <div class="row gap-4">
+        <div class="tags d-flex gap-3 justify-content-end">
+          <app-tag
+            customTag="tag-language"
+            [labelTag]="cardData.repository.language" />
+          <app-tag
+            customTag="tag-privacy"
+            [labelTag]="cardData.repository.visibility" />
+        </div>
+        <div class="repository-info mt-3 d-flex justify-content-end gap-2">
+          <div class="stars">
+            <img src="../../../../assets/icons/star.svg" alt="Star Icon" />
+            {{ cardData.repository.stars }}
+          </div>
+          <div class="watchers">
+            <img
+              src="../../../../assets/icons/watchers.svg"
+              alt="watchers Icon" />
+            {{ cardData.repository.watchers }}
+          </div>
+          <div class="pulls-request">
+            <img src="../../../../assets/icons/fork.svg" alt="Fork Icon" />
+            {{ cardData.repository.forks }}
+          </div>
+          <div class="issues">
+            <img src="../../../../assets/icons/issues.svg" alt="Issues" />
+            {{ cardData.repository.issues }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

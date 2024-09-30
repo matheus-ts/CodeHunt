@@ -1,0 +1,27 @@
+.tag {
+  border: 2px solid (var(--border-color));
+  border-radius: 10px;
+  padding: 3px 20px;
+  font-weight: 500;
+}
+.tag-language {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+.tag-privacy {
+  background: rgba(255, 147, 84, 19%);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.tag-open {
+  border: 2px solid #386641;
+  color: #386641;
+}
+
+.tag-closed {
+  border: 2px solid #bc4749;
+  color: #bc4749;
+}

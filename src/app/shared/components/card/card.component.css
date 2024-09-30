@@ -1,0 +1,20 @@
+.custom-card {
+  background-color: #ffffff;
+  border: 1px solid #d2d1d1;
+  cursor: pointer;
+  transition: ease 0.1s;
+}
+.custom-card:hover {
+  box-shadow: 2px 2px 10px #eee;
+  transition: 0.2s ease;
+}
+
+.repository-subtitle {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.repository-description {
+  font-size: 16px;
+}
