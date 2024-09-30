@@ -20,6 +20,8 @@ export class SearchDetailsComponent implements OnInit {
   cardData: SearchResponse;
 
   tableData: SearchDetails[] = [];
+  page: number;
+
   paginationControls = {
     itemsPerPage: 3,
     currentPage: 1,
@@ -38,7 +40,7 @@ export class SearchDetailsComponent implements OnInit {
         if (data.user.userName == undefined) this.router.navigate(['/']);
 
         this.cardData = data;
-        this.searchRepos(this.buildQueryParams(1));
+        this.searchRepos(this.buildQueryParams());
       },
       error: error => console.error('Erro ao buscar repositório:', error),
       // complete: () => this.searchRepos(this.buildQueryParams(1)),
@@ -65,14 +67,12 @@ export class SearchDetailsComponent implements OnInit {
   }
 
   onChangePage(page: number) {
-    this.searchRepos(this.buildQueryParams(page));
+    this.paginationControls.currentPage = page;
   }
 
-  private buildQueryParams(page: any) {
-    this.paginationControls.currentPage = page;
+  private buildQueryParams() {
+    this.paginationControls.currentPage = 1;
     return {
-      per_page: this.tableData?.length,
-      page: page,
       direction: 'desc',
       sort: 'updated',
     };
