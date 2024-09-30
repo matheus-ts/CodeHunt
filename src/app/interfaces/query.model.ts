@@ -3,5 +3,5 @@ export class QueryParams {
   per_page: number;
   page: number;
   direction: 'asc' | 'desc';
-  sort: 'created' | 'updated' | 'comments';
+  sort: 'help-wanted-issues' | 'stars' | 'created' | 'updated' | 'comments';
 }

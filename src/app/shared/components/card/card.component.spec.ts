@@ -16,10 +16,12 @@ describe('CardComponent', () => {
 
     component.cardData = {
       user: {
+        userName: 'teste',
         userId: 1,
         userAvatar: 'repo?',
       },
       repository: {
+        repositoryId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
         name: 'repo?',

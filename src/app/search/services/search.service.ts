@@ -21,7 +21,6 @@ export class SearchService {
       .pipe(
         tap(console.log),
         map((response: GithubResponse) => {
-          console.log(response);
           return response?.items.map(repo => ({
             totalItems: response.total_count,
             user: {
@@ -69,8 +68,7 @@ export class SearchService {
             pullUrl: details.url,
             totalItems: response.length,
           }));
-        }),
-        tap(pulls => console.log('Mapped Pulls:', pulls))
+        })
       );
   }
 }

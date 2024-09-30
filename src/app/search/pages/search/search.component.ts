@@ -64,7 +64,7 @@ export class SearchComponent {
       per_page: this.paginationControls.itemsPerPage,
       page: page,
       direction: 'desc',
-      sort: 'updated',
+      sort: 'stars',
     };
   }
 }

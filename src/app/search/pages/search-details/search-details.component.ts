@@ -19,7 +19,7 @@ export class SearchDetailsComponent implements OnInit {
   logoSize: LogoSize = LogoSize.small;
   cardData: SearchResponse;
 
-  tableData: SearchDetails[];
+  tableData: SearchDetails[] = [];
   paginationControls = {
     itemsPerPage: 3,
     currentPage: 1,
@@ -35,6 +35,8 @@ export class SearchDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.sharedService.currentRepository.subscribe({
       next: data => {
+        if (data.user.userName == undefined) this.router.navigate(['/']);
+
         this.cardData = data;
         this.searchRepos(this.buildQueryParams(1));
       },
@@ -69,7 +71,7 @@ export class SearchDetailsComponent implements OnInit {
   private buildQueryParams(page: any) {
     this.paginationControls.currentPage = page;
     return {
-      per_page: this.paginationControls.itemsPerPage,
+      per_page: this.tableData?.length,
       page: page,
       direction: 'desc',
       sort: 'updated',

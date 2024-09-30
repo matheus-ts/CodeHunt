@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <nav class="navbar sticky-top">
+  <nav class="navbar">
     <div class="container-fluid">
       <div class="d-flex w-100 p-5 justify-content-between">
         <span
@@ -25,7 +25,9 @@
     </div>
   </div>
   <div class="container search-content gap-2 mt-5">
-    <div *ngIf="tableData.length !== 0; else notFound">
+    <div
+      class="d-flex flex-column gap-2"
+      *ngIf="tableData.length !== 0; else notFound">
       <app-card-pull
         *ngFor="
           let card of tableData
