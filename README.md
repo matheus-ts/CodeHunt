@@ -5,6 +5,9 @@
 ## Protótipo 
 **[Figma](https://www.figma.com/proto/9KG0hcehJlbDegAw9RXmqL/Code-Hunt?node-id=1-3&node-type=canvas&t=MksenEY24GcKIWUd-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3)**
 
+## Stackblitz
+**[Stackblitz](https://stackblitz.com/~/github.com/matheus-ts/CodeHunt)**
+
 ## Funcionalidades
 
 - **Pesquisa de Repositórios**: Encontre repositórios públicos no GitHub com base na linguagem que escolher.
