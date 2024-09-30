@@ -23,8 +23,10 @@ export class SearchService {
             user: {
               userId: repo?.owner?.id,
               userAvatar: repo?.owner?.avatar_url,
+              userName: repo?.owner?.login,
             },
             repository: {
+              repositoryId: repo?.id,
               createdAt: repo?.created_at,
               updatedAt: repo?.updated_at,
               name: repo?.name,
@@ -42,5 +44,13 @@ export class SearchService {
           }));
         })
       );
+  }
+
+  searchPulls(query: any, params: any) {
+    return this.http
+      .get(`${ENDPOINTS.searchPulls}/${query.owner}/${query.repo}/pulls`, {
+        params,
+      })
+      .pipe(tap(console.log));
   }
 }

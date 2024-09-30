@@ -26,7 +26,6 @@
     </div>
     <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
       <app-card
-        (click)="viewDetails()"
         *ngFor="
           let card of tableData
             | paginate
@@ -36,7 +35,8 @@
                   totalItems: paginationControls.totalItems,
                 }
         "
-        [cardData]="card" />
+        [cardData]="card"
+        (click)="viewDetails(card)" />
       <div class="row">
         <div class="d-flex justify-content-center align-items-center">
           <pagination-controls

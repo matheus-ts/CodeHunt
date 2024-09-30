@@ -1,9 +1,11 @@
 interface User {
   userId: number;
   userAvatar: string;
+  userName: string;
 }
 
 interface Repository {
+  repositoryId: number;
   createdAt: Date;
   updatedAt: Date;
   language: string;
@@ -19,7 +21,7 @@ interface Repository {
   topics: string[];
 }
 
-export interface SearchResponse {
+export class SearchResponse {
   user: User;
   repository: Repository;
   //   paginable: string;

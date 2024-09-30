@@ -5,6 +5,7 @@ import { QueryParams } from 'src/app/interfaces/query.model';
 import { SearchResponse } from 'src/app/interfaces/response/search.model';
 import { Router } from '@angular/router';
 import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
+import { SharedService } from 'src/app/shared/service/shared.service';
 
 @Component({
   selector: 'app-search',
@@ -24,7 +25,8 @@ export class SearchComponent {
 
   constructor(
     private searchService: SearchService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
 
   onSearch(searchTerm: string) {
@@ -36,7 +38,8 @@ export class SearchComponent {
     this.searchRepos(this.buildQueryParams(this.searchTerm, page));
   }
 
-  viewDetails() {
+  viewDetails(repository: SearchResponse) {
+    this.sharedService.changeRepository(repository);
     this.router.navigate(['details']);
   }
 
