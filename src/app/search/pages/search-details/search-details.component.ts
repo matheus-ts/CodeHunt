@@ -7,7 +7,6 @@ import {
 import { SharedService } from 'src/app/shared/service/shared.service';
 import { LogoSize } from 'src/app/utils/enum/logo-size.enum';
 import { SearchService } from '../../services/search.service';
-import { QueryParams } from 'src/app/interfaces/query.model';
 import { distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -19,7 +18,9 @@ export class SearchDetailsComponent implements OnInit {
   logoSize: LogoSize = LogoSize.small;
   cardData: SearchResponse;
 
-  tableData: SearchDetails[];
+  tableData: SearchDetails[] = [];
+  page: number;
+
   paginationControls = {
     itemsPerPage: 3,
     currentPage: 1,
@@ -35,18 +36,19 @@ export class SearchDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.sharedService.currentRepository.subscribe({
       next: data => {
+        if (data.user.userName == undefined) this.router.navigate(['/']);
+
         this.cardData = data;
-        this.searchRepos(this.buildQueryParams(1));
+        this.searchRepos(this.buildQueryParams());
       },
       error: error => console.error('Erro ao buscar repositório:', error),
-      // complete: () => this.searchRepos(this.buildQueryParams(1)),
     });
   }
 
   searchRepos(query: any) {
     const pathParameters = {
-      owner: this.cardData.user.userName,
-      repo: this.cardData.repository.name,
+      owner: this.cardData?.user?.userName,
+      repo: this.cardData?.repository?.name,
     };
 
     this.searchService
@@ -63,14 +65,12 @@ export class SearchDetailsComponent implements OnInit {
   }
 
   onChangePage(page: number) {
-    this.searchRepos(this.buildQueryParams(page));
+    this.paginationControls.currentPage = page;
   }
 
-  private buildQueryParams(page: any) {
-    this.paginationControls.currentPage = page;
+  private buildQueryParams() {
+    this.paginationControls.currentPage = 1;
     return {
-      per_page: this.paginationControls.itemsPerPage,
-      page: page,
       direction: 'desc',
       sort: 'updated',
     };

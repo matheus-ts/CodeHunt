@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <nav class="navbar sticky-top">
+  <nav class="navbar">
     <div class="container-fluid">
       <div class="d-flex w-100 p-5 justify-content-between">
         <span
@@ -20,33 +20,36 @@
   </nav>
 
   <div class="row d-flex justify-content-center">
-    <div class="container-info col-10">
+    <div class="container-info col-md-12 col-lg-8">
       <app-card [cardData]="cardData"></app-card>
     </div>
-  </div>
-  <div class="container search-content gap-2 mt-5">
-    <div *ngIf="tableData.length !== 0; else notFound">
-      <app-card-pull
-        *ngFor="
-          let card of tableData
-            | paginate
-              : {
-                  itemsPerPage: paginationControls.itemsPerPage,
-                  currentPage: paginationControls.currentPage,
-                  totalItems: paginationControls.totalItems,
-                }
-        "
-        [cardData]="card" />
-      <div class="row">
-        <div class="d-flex justify-content-center align-items-center mt-3">
-          <pagination-controls
-            [responsive]="true"
-            (pageChange)="onChangePage($event)" />
+
+    <div class="col-md-12 col-lg-8 search-content gap-2 mt-5">
+      <div
+        class="d-flex flex-column gap-2"
+        *ngIf="tableData.length !== 0; else notFound">
+        <app-card-pull
+          *ngFor="
+            let card of tableData
+              | paginate
+                : {
+                    itemsPerPage: paginationControls.itemsPerPage,
+                    currentPage: paginationControls.currentPage,
+                    totalItems: tableData?.length,
+                  }
+          "
+          [cardData]="card" />
+        <div class="row">
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <pagination-controls
+              [responsive]="true"
+              (pageChange)="onChangePage($event)" />
+          </div>
         </div>
       </div>
+      <ng-template #notFound>
+        <h4>Nenhum pull request retornado para o repositório selecionado</h4>
+      </ng-template>
     </div>
-    <ng-template #notFound>
-      <h4>Nenhum pull request retornado para o repositório selecionado</h4>
-    </ng-template>
   </div>
 </div>

@@ -1,11 +1,17 @@
-.small-logo {
-  width: 200px;
+.logo {
+  width: 50vw;
+  max-width: 400px;
 }
 
-.medium-logo {
-  width: 400px;
+@media (max-width: 768px) {
+  .logo {
+    width: 70vw;
+  }
 }
 
-.large-logo {
-  width: 70vw;
+@media (max-width: 480px) {
+  .logo {
+    width: 90vw;
+    max-width: 200px;
+  }
 }

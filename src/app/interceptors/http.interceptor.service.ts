@@ -22,12 +22,6 @@ export class HttpAuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const clonedReq = req.clone({
-      // headers: req.headers
-      //   .set('Access-Control-Allow-Origin', '*')
-      //   .set(
-      //     'Access-Control-Allow-Methods',
-      //     'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-      //   ),
       url: this.prepareUri(req.url.replace(this.BASE_URL, '')),
     });
 
@@ -38,7 +32,6 @@ export class HttpAuthInterceptor implements HttpInterceptor {
 
   private handleError(err: HttpErrorResponse): Observable<any> {
     if (err.status == 401) {
-      console.log(err.status);
       return of(err.message);
     } else if (err.status == 403) {
       return of(err.message);

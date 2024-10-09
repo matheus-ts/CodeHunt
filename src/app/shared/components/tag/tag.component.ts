@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tag.component.css'],
 })
 export class TagComponent {
-  @Input() labelTag: string;
+  @Input() labelTag: any;
   @Input() customTag: string;
 }

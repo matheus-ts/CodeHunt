@@ -1,13 +1,13 @@
 <div class="container">
   <div
     class="vh-100 d-flex flex-column justify-content-evenly align-items-center">
-    <div class="row d-flex w-100 justify-content-center align-items-center">
+    <div class="d-flex w-100 justify-content-center align-items-center">
       <div class="search-container col-12 col-md-8 text-center gap-5">
         <div class="row mb-4">
           <app-logo [size]="size" />
         </div>
         <div class="row d-flex justify-content-center">
-          <div class="col-sm-12 col-md-10">
+          <div class="col-sm-12 col-md-12 col-lg-10 mb-3">
             <div class="form-group position-relative">
               <app-input
                 class="custom-input w-100"
@@ -24,7 +24,12 @@
         </div>
       </div>
     </div>
-    <div class="search-content row gap-2" *ngIf="tableData.length !== 0">
+
+    <app-notification
+      *ngIf="hasError"
+      [errorMessage]="errorMessage"
+      [typeAlert]="'alert-danger'" />
+    <div class="search-content row gap-2" *ngIf="tableData.length > 0">
       <app-card
         *ngFor="
           let card of tableData
@@ -36,6 +41,9 @@
                 }
         "
         [cardData]="card"
+        (keydown.enter)="viewDetails(card)"
+        tabindex="0"
+        role="button"
         (click)="viewDetails(card)" />
       <div class="row">
         <div class="d-flex justify-content-center align-items-center">
