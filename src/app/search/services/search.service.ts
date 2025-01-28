@@ -14,8 +14,9 @@ import { ENDPOINTS } from 'src/environments/endpoint';
 })
 export class SearchService {
   constructor(private http: HttpClient) {}
-
   searchRepos(params = {}) {
+  console.log('teste')
+
     return this.http
       .get<SearchResponse[]>(ENDPOINTS.searchByParams, { params })
       .pipe(
